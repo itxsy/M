@@ -59,11 +59,6 @@
             }
             loadingFiles[url]=true;
             wait=win.setTimeout(function(){
-                /*=============================================================================
-                * 目前延时回调处理，超时后如果有延时回调，执行回调，然后继续等
-                * 延时回调的意义是log延时长的URI，这个处理不属于加载器本身的功能移到外部
-                * 没有跳过是为了避免错误。
-                * ============================================================================*/
                 if(config.timeoutCallback){
                     try{config.timeoutCallback(url);}catch(ex){}
                 }
@@ -90,12 +85,7 @@
                 }
                 img.src=url;
             }else{
-                // firefox, safari, chrome, ie9下加载失败触发
-                // 如果文件是404, 会比timeout早触发onerror。目前不处理404，只处理超时
                 n.onerror=function(){done();n.onerror=null;};
-                // ie6~8通过创建vbscript可以识别是否加载成功。
-                // 但这样需先测试性加载再加载影响性能。即使没成功加载而触发cb，顶多报错，没必要杜绝这种报错
-                // ie6~9下加载成功或失败，firefox, safari, opera下加载成功触发
                 n.onload=n.onreadystatechange=function(){
                     var url;
                     if(!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete'){
@@ -106,7 +96,7 @@
             }
             jsSelf.parentNode.insertBefore(n,jsSelf);
         },
-        // 加载依赖论文件(顺序)
+        // 加载依赖文件
         _loadDeps=function(deps,cb){
             var model=config.model,
                 id,
