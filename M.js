@@ -174,7 +174,7 @@
                 }
             }
         },
-        //某些方面讲这是个异步执行的核心方法 这方法还有优化空间
+        // 某些方面讲这是个异步执行的核心方法 这方法还有优化空间
         fire:function(callback,thisObj){
             setTimeout(function(){
                 callback.call(thisObj);
