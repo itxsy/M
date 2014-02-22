@@ -1,24 +1,26 @@
 (function (win, doc, undefined) {
     'use strict';
     // 框架常用的变量声明
-    var loaded = {},// 已加载模块
+    var uid=1,//用来异步执行的变量
+        map={},//存放异步执行的字面量
+        rmap={},//存放异步执行的字面量
+
+        jsReference=[],// 加载外部模块参考位置
+        loaded = {},// 已加载模块
         loadList = {},// 已加载列表
         loadingFiles = {},// 加载中的模块
                 
         globalList = [],// 全局模块
         readyList = [],
         isReady = false,
+        
         // 内部配置文件
         config = {
             autoLoad : true,// 是否自动加载核心库
             timeout : 100,// 加载延迟
             coreLib : ['/M/js/jquery.Small.min.1.0.js'],// 核心库
             model: {}
-        },
-        uid=1,//用来异步执行的变量
-        map={},//存放异步执行的字面量
-        rmap={},//存放异步执行的字面量
-        jsReference=[];// 加载外部模块参考位置
+        };
     // 初始外部配置
     (function(){
         var jsObj = (function (a) {
@@ -338,6 +340,7 @@
         method.fireReadyList();
     });
     win.M=M;
+
     //基于原型链的继承 框架最早实现的继承方式
     Function.prototype.extend=function(a,b){
         //保证传进来的参数是函数
