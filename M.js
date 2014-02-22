@@ -337,8 +337,7 @@
         isReady=true;
         method.fireReadyList();
     });
-    win.$$=win.M=M;
-    
+    win.M=M;
     //基于原型链的继承 框架最早实现的继承方式
     Function.prototype.extend=function(a,b){
         //保证传进来的参数是函数
