@@ -13,7 +13,7 @@
         globalList = [],// 全局模块
         readyList = [],
         isReady = false,
-        
+
         // 内部配置文件
         config = {
             autoLoad : true,// 是否自动加载核心库
@@ -339,7 +339,7 @@
         isReady=true;
         method.fireReadyList();
     });
-    win.M=M;
+    win.$$=win.M=M;
 
     //基于原型链的继承 框架最早实现的继承方式
     Function.prototype.extend=function(a,b){
