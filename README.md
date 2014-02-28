@@ -5,7 +5,9 @@ M.js是一个轻量级的前端解决方案，包含js的模块化加载，js函
 框架借鉴了很多jquery的思想以及集成了网上的一些解决浏览器兼容的方法，框架的API调用支持链式调用，几乎和使用jquery的习惯一样。
 这个框架目前还是初级版本，但她可以解决一些事情，适合一些页面效果不是太多的网站。
 写这个框架的目的是因为现有的项目自身对jquery依赖不高，jquery本身很多功能现有项目用不上，但是必须加载一个几十KB的jquery文件，基于此目的我才写了这框架。
+
 写这个框架之前我巩固了下javascript以及重新阅读了jquery源码，这个框架目前自己感觉写得有点蹩脚，但是目前的水平有限，代码还不是最优。
+同时感觉到jquery写的是多么的优雅。
 写完这个框架我感觉到我自己的js水平是多么的需要再提升。
 
 ## M.js结构
@@ -168,3 +170,40 @@ M.dom操作属性可以用Dom()也可以用$。
 - Dom(tag#id.className);
 - Dom(.className);
 - Dom(span > * > b);
+
+```javascript
+Dom(selector).text();
+Dom(selector).val();
+Dom(selector).value();
+Dom(selector).html();
+Dom(selector).remove();
+Dom(selector).removeClass();
+Dom(selector).addClass();
+Dom(selector).attr();
+Dom(selector).prev();
+Dom(selector).next();
+Dom(selector).first();
+Dom(selector).last();
+Dom(selector).parent();
+Dom(selector).show();
+Dom(selector).hide();
+```
+- M.event 事件绑定组件
+```javascript
+Event.on();// 绑定基本事件
+Event.off();// 移除事件
+Event.top();// 阻止元素冒泡
+Event.prevent();// 阻止浏览器点击事件的默认行为
+```
+- M.net 通信组件的API
+```javascript
+ajax.run({
+	async:true,// 是否异步
+    type:"POST",// 提交方式
+    dataType:"json", // 数据格式
+    cache:true, // 是否开启IE下的缓存
+    error:function(error) {},// 错误回调
+    success:function() {} // 回调函数
+})
+```
+由于时间匆忙，API可能不够详细，如果感觉迷惑，那么可以看下源码。
